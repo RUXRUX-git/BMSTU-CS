@@ -9,10 +9,35 @@
     </style>
 </head>
 <body>
-    <form action="" method="get">
-        <input>
+    <form name="mathExpressionForm" id="mathExpressionForm">
+        <input id="mathExpression">
         <input type="submit" value="Отправить математическое выражение">
     </form>
     <div class="hidden" id="calcResultContainer">Результат вычисления: <span id="calcResultValue"></span></div>
+    <script>
+        console.log("script started");
+        document.addEventListener("DOMContentLoaded", function() {
+            document.forms["mathExpressionForm"].addEventListener("submit", postData);
+        })
+
+        async function postData(formsubmission) {
+            console.log("post data called");
+            let mathExpression = encodeURIComponent(document.getElementById("mathExpression").value);
+
+            let http = new XMLHttpRequest();
+            http.open("GET", "submit?math_expression=" + mathExpression, true);
+
+            http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+            http.onreadystatechange = function(){
+                if (http.readyState == 4 && http.status == 200) {
+                document.getElementById("calcResultValue").textContent = http.responseText;
+                }
+            }
+            console.log("before sending request");
+            http.send(null);
+            formsubmission.preventDefault();
+        }
+    </script>
 </body>
 </html>

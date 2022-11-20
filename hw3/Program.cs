@@ -36,6 +36,11 @@ namespace HTTPServer
                 }
             }
 
+            Debug.WriteLine("Full request:");
+            Debug.WriteLine("********************");
+            Debug.WriteLine(string.Format("{0}", Request));
+            Debug.WriteLine("********************");
+
             Match ReqMatch = Regex.Match(Request, @"^\w+\s+([^\s\?]+)[^\s]*\s+HTTP/.*|");
 
             if (ReqMatch == Match.Empty)
@@ -49,59 +54,16 @@ namespace HTTPServer
             RequestUri = Uri.UnescapeDataString(RequestUri);
             Debug.WriteLine(String.Format("Request URI: '{0}'", RequestUri));
 
-            if (RequestUri.IndexOf("..") >= 0)
-            {
-                SendError(Client, 400);
-                return;
+            if (RequestUri == "/submit") {
+                Debug.WriteLine(string.Format("Request body: {0}", Request.Split("\r\n\r\n")));
             }
 
-            string FilePath = RequestUri;
-
-            if (!File.Exists(FilePath))
-            {
-                SendError(Client, 404);
-                return;
-            }
-
-            string Extension = RequestUri.Substring(RequestUri.LastIndexOf('.'));
             string ContentType = "text/html";
-
-            switch (Extension)
-            {
-                case ".htm":
-                case ".html":
-                    ContentType = "text/html";
-                    break;
-                case ".css":
-                    ContentType = "text/stylesheet";
-                    break;
-                case ".js":
-                    ContentType = "text/javascript";
-                    break;
-                case ".jpg":
-                    ContentType = "image/jpeg";
-                    break;
-                case ".jpeg":
-                case ".png":
-                case ".gif":
-                    ContentType = "image/" + Extension.Substring(1);
-                    break;
-                default:
-                    if (Extension.Length > 1)
-                    {
-                        ContentType = "application/" + Extension.Substring(1);
-                    }
-                    else
-                    {
-                        ContentType = "application/unknown";
-                    }
-                    break;
-            }
 
             FileStream FS;
             try
             {
-                FS = new FileStream(FilePath, FileMode.Open, FileAccess.Read, FileShare.Read);
+                FS = new FileStream("index.html", FileMode.Open, FileAccess.Read, FileShare.Read);
             }
             catch (Exception)
             {
