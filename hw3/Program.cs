@@ -21,6 +21,22 @@ namespace HTTPServer
             Client.Close();
         }
 
+        private void SendText(TcpClient Client, int Code, string Text) {
+            string CodeStr = Code.ToString() + " " + ((HttpStatusCode)Code).ToString();
+            string Str = "HTTP/1.1 " + CodeStr + "\nContent-type: text/plain\nContent-Length:" + Text.Length.ToString() + "\n\n" + Text;
+            byte[] Buffer = Encoding.Default.GetBytes(Str);
+
+            Client.GetStream().Write(Buffer, 0, Buffer.Length);
+            Client.Close();
+        }
+
+        private static string DecodeUrlString(string url) {
+            string newUrl;
+            while ((newUrl = Uri.UnescapeDataString(url)) != url)
+                url = newUrl;
+            return newUrl;
+        }
+
         public Client(TcpClient Client)
         {
             Debug.WriteLine("NEW INCOMING REQUEST");
@@ -54,8 +70,21 @@ namespace HTTPServer
             RequestUri = Uri.UnescapeDataString(RequestUri);
             Debug.WriteLine(String.Format("Request URI: '{0}'", RequestUri));
 
+
             if (RequestUri == "/submit") {
-                Debug.WriteLine(string.Format("Request body: {0}", Request.Split("\r\n\r\n")));
+                string paramString = Request.Split(" ")[1].Split("?")[1];
+                string[] paramList = paramString.Split("&");
+                string mathExpr = DecodeUrlString(paramList[0].Split("=")[1]);
+                string result;
+                try {
+                    var polish = HW1.MakeReversePolish(mathExpr);
+                    result = HW1.InterpretReversePolish(polish).ToString();
+                } catch (Exception) {
+                    SendText(Client, 200, "invalid expression");
+                    return;
+                }
+                SendText(Client, 200, result);
+                return;
             }
 
             string ContentType = "text/html";

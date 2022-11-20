@@ -32,6 +32,7 @@
             http.onreadystatechange = function(){
                 if (http.readyState == 4 && http.status == 200) {
                 document.getElementById("calcResultValue").textContent = http.responseText;
+                document.getElementById("calcResultContainer").classList.remove("hidden");
                 }
             }
             console.log("before sending request");
