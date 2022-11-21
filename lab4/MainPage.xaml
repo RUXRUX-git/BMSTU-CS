@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="lab4.MainPage"
+             Title="Автоматизированная система учета банковских сведений">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+            
+            <!--<Label
+                Text="Автоматизированная система учета банковских сведений"
+                SemanticProperties.HeadingLevel="Level2"
+                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
+                FontSize="18"
+                HorizontalOptions="Center" />-->
+
+            <Button
+                x:Name="ShowSeeUsersPageBtn"
+                Text="Посмотреть пользователей"
+                Clicked="ShowSeeUsersPage"
+                HorizontalOptions="Center" />
+
+            <Button
+                x:Name="ShowAddUserPageBtn"
+                Text="Добавить пользователя"
+                Clicked="ShowAddUserPage"
+                HorizontalOptions="Center" />
+
+            <Button
+                x:Name="ShowAddAccountPageBtn"
+                Text="Добавить счет"
+                Clicked="ShowAddAccountPage"
+                HorizontalOptions="Center" />
+
+            <Button
+                x:Name="ShowDeleteAccountPageBtn"
+                Text="Закрыть счет"
+                Clicked="ShowDeleteAccountPage"
+                HorizontalOptions="Center" />
+
+            <Button
+                x:Name="ShowAddMoneyPageBtn"
+                Text="Внести деньги"
+                Clicked="ShowAddMoneyPage"
+                HorizontalOptions="Center" />
+
+            <Button
+                x:Name="ShowTakeMoneyPageBtn"
+                Text="Снять деньги"
+                Clicked="ShowTakeMoneyPage"
+                HorizontalOptions="Center" />
+
+            <Button
+                x:Name="ShowSeeBalancePageBtn"
+                Text="Посмотреть баланс"
+                Clicked="ShowSeeBalancePage"
+                HorizontalOptions="Center" />
+
+            <Button
+                x:Name="ShowSeeHistoryPageBtn"
+                Text="Посмотреть историю"
+                Clicked="ShowSeeHistoryPage"
+                HorizontalOptions="Center" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
+

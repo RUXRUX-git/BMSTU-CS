@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="lab4.Pages.AddAccountPage"
+             Title="Добавление нового счета">
+    <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+        <Entry
+            x:Name="clientNumberEntry"
+            Placeholder="Введите номер клиента"
+            HorizontalOptions="Center" />
+        <Entry
+            x:Name="accountNumberEntry"
+            Placeholder="Введите номер счета"
+            HorizontalOptions="Center" />
+        <Button
+            x:Name="SubmitButton"
+            Text="Открыть счет"
+            Clicked="FormSubmitted"
+            HorizontalOptions="Center" />
+        <Button
+            x:Name="ReturnToMainButton"
+            Text="Вернуться на главную"
+            Clicked="ReturnToMain"
+            HorizontalOptions="Center" />
+    </VerticalStackLayout>
+</ContentPage>

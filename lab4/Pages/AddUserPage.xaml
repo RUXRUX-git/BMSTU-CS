@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="lab4.Pages.AddUserPage"
+             Title="Добавление нового пользователя">
+    <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+        <Entry
+            x:Name="fioEntry"
+            Placeholder="Введите Ф.И.О."
+            HorizontalOptions="Center" />
+        <Entry
+            x:Name="ageEntry"
+            Placeholder="Введите возраст"
+            HorizontalOptions="Center" />
+        <Entry
+            x:Name="workPlaceEntry"
+            Placeholder="Введите место работы"
+            HorizontalOptions="Center" />
+        <Button
+            x:Name="SubmitButton"
+            Text="Добавить пользователя"
+            Clicked="FormSubmitted"
+            HorizontalOptions="Center" />
+        <Button
+            x:Name="ReturnToMainButton"
+            Text="Вернуться на главную"
+            Clicked="ReturnToMain"
+            HorizontalOptions="Center" />
+    </VerticalStackLayout>
+</ContentPage>

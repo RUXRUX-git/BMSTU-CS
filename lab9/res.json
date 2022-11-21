@@ -1,0 +1,33 @@
+{
+  "Number": 1,
+  "Customer": {
+    "Name": "\u0414\u043C\u0438\u0442\u0440\u0438\u0439",
+    "Address": "\u0411\u0430\u0443\u043C\u0430\u043D\u0441\u043A\u0430\u044F",
+    "Discount": 0.1
+  },
+  "Discount": 0.1,
+  "TotalPrice": 51490.8,
+  "OrderLines": [
+    {
+      "Product": {
+        "Name": "\u043D\u043E\u0441\u043A\u0438",
+        "Price": 319
+      },
+      "Amount": 6
+    },
+    {
+      "Product": {
+        "Name": "\u043A\u0430\u043B\u044C\u043A\u0443\u043B\u044F\u0442\u043E\u0440",
+        "Price": 299
+      },
+      "Amount": 1
+    },
+    {
+      "Product": {
+        "Name": "\u043A\u043E\u043C\u043F\u044C\u044E\u0442\u0435\u0440",
+        "Price": 54999
+      },
+      "Amount": 1
+    }
+  ]
+}

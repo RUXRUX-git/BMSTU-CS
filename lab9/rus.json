@@ -1,0 +1,19 @@
+{
+  "Number": 1,
+  "Customer": {
+    "Name": "\u0420\u0443\u0441\u043B\u0430\u043D",
+    "Address": "\u0420\u0443",
+    "Discount": 0.05
+  },
+  "Discount": 0.05,
+  "TotalPrice": 18995.25,
+  "OrderLines": [
+    {
+      "Product": {
+        "Name": "\u043D\u0430\u0443\u0448\u043D\u0438\u043A\u0438",
+        "Price": 3999
+      },
+      "Amount": 5
+    }
+  ]
+}
