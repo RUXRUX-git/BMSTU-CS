@@ -242,6 +242,7 @@ class Lab9
             Console.WriteLine();
 
             Order.ToFile(fileName, order);
+            Console.WriteLine("Заказ сохранен в файле с именем {0}", fileName);
         }
     }
 }

@@ -278,7 +278,6 @@ public class HW1
                 } else if (action == Action.II) {
                     Operation operation = SymbolToOperation(sym);
                     operations.Add(operation);
-                    commands.Add(new K(sym));
                     pos++;
                 } else if (action == Action.III) {
                     operations.RemoveAt(operations.Count() - 1);
@@ -311,6 +310,9 @@ public class HW1
                 } else if (commands[0].type == "*") {
                     operands[operands.Count() - 2] = operands[operands.Count() - 2] * operands[operands.Count() - 1];
                 } else if (commands[0].type == "/") {
+                    if (operands[operands.Count() - 1] == 0) {
+                        throw new DivideByZeroException();    
+                    }
                     operands[operands.Count() - 2] = operands[operands.Count() - 2] / operands[operands.Count() - 1];
                 } else {
                     throw new UndefinedCommandException("Unknown command: " + commands[0]);

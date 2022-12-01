@@ -511,7 +511,7 @@ def make_reverse_polish(equation: str):
             elif action == Actions.II:
                 operation = symbol_to_operation(sym)
                 operations.append(operation)
-                commands.append(K(sym))
+                # commands.append(K(sym))
                 pos += 1
             elif action == Actions.III:
                 del operations[-1]
@@ -532,11 +532,22 @@ def make_reverse_polish(equation: str):
     return commands
 
 def interpret_reverse_polish(commands):
+    logging.info("*"*20)
+    logging.info(f"interpret_reverse_polish called, commands = {commands}")
+    logging.info("*"*20)
+    i_debug = 0
     operands = []
     while commands:
+        i_debug += 1
+        logging.info(f"STEP {i_debug}")
+        logging.info(f"commands before: {commands}")
+        logging.info(f"operands before: {operands}")
         if commands[0].type == 'number':
             operands.append(int(commands[0].value))
         else:
+            if len(operands) < 2:
+                del commands[0]
+                continue
             if commands[0].type == '+':
                 operands[-2] = operands[-2] + operands[-1]
             elif commands[0].type == '-':

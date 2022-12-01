@@ -37,7 +37,6 @@
     }
 
     public bool ParseAndProcessInput(string? input, bool isNought) {
-        Console.WriteLine($"input: '{input}'");
         if (input == null || input.Count() < 2) {
             return false;
         }

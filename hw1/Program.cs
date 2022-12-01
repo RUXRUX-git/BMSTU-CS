@@ -278,7 +278,6 @@ public class HW1
                 } else if (action == Action.II) {
                     Operation operation = SymbolToOperation(sym);
                     operations.Add(operation);
-                    commands.Add(new K(sym));
                     pos++;
                 } else if (action == Action.III) {
                     operations.RemoveAt(operations.Count() - 1);
@@ -311,6 +310,9 @@ public class HW1
                 } else if (commands[0].type == "*") {
                     operands[operands.Count() - 2] = operands[operands.Count() - 2] * operands[operands.Count() - 1];
                 } else if (commands[0].type == "/") {
+                    if (operands[operands.Count() - 1] == 0) {
+                        throw new DivideByZeroException();    
+                    }
                     operands[operands.Count() - 2] = operands[operands.Count() - 2] / operands[operands.Count() - 1];
                 } else {
                     throw new UndefinedCommandException("Unknown command: " + commands[0]);
@@ -349,7 +351,11 @@ public class HW1
         Console.WriteLine("Введите математическое выражение:");
         string eq = Console.ReadLine()!;
         List<K> commands = MakeReversePolish(eq);
-        Console.WriteLine("Результат вычисления: {0}", InterpretReversePolish(commands));
+        try {
+            Console.WriteLine("Результат вычисления: {0}", InterpretReversePolish(commands));
+        } catch (DivideByZeroException) {
+            Console.WriteLine("Обнаружено деление на 0");
+        }
     }
 }
 
